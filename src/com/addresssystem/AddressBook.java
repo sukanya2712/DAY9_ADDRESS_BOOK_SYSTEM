@@ -96,7 +96,7 @@ public class AddressBook {
         AddressBook a = new AddressBook();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Enter Your FIrst name:-");
+        System.out.println("Enter Your First name:-");
         a.firstname=sc.next();
         a.setFirstname(a.firstname);
 
@@ -159,7 +159,22 @@ public class AddressBook {
         System.out.println("Email is "+StoreEmail[sr]);
         ask();
     }
-
+    public static void Delete(){
+        ////// enter 1 for the 1st person as a sr
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ENter sr the number of the contact which you want to delete");
+        int sr = sc.nextInt();
+        StoreFirstName[sr]=" ";
+        StoreLastName[sr]=" ";
+        StorePhoneNumber[sr]=0;
+        StoreAddress[sr]=" ";
+        StoreState[sr]=" ";
+        StoreCity[sr]=" ";
+        StoreZip[sr]=0;
+        StoreEmail[sr]=" ";
+        System.out.println("Contatc deleted!!!!!");
+        ask();
+    }
     public static void edit(){
         // enter 1 to edit 1st person as a sr no enter 2 to edit 2nd person
         Scanner sc = new Scanner(System.in);
@@ -216,7 +231,7 @@ public class AddressBook {
     }
     public static void start(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("which operation you want to perform \n 1) Create new contact \n 2) display details \n 3)Edit any contact \n 4)Exit ");
+        System.out.println("which operation you want to perform \n 1) Create new contact \n 2) display details \n 3)Edit any contact \n 4)Delete any contact \n 5)Exit");
         int takeip=sc.nextInt();
         if(takeip==1)
         {
@@ -224,8 +239,10 @@ public class AddressBook {
         } else if (takeip==2) {
             displaydata();
         }
-        else if(takeip==3) {
+        else if(takeip==3){
             edit();
+        } else if (takeip==4) {
+            Delete();
         } else {
             System.exit(0);
         }
