@@ -8,11 +8,24 @@ public class AddressBook {
     private String firstname,lastname,address,state,city,email;
     private int zip;
     private long phonenumber;
+    static int count=0;
+
+    static long[] StorePhoneNumber = new long[20];
+    static int[] StoreZip = new int[20];
+    static String[] StoreFirstName = new String[20];
+    static String[] StoreLastName = new String[20];
+    static String[] StoreAddress = new String[20];
+    static String[] StoreState = new String[20];
+    static String[] StoreCity = new String[20];
+    static String[] StoreEmail = new String[20];
+
+
+
     public String getFirstname() {
         return firstname;
     }
-
     public void setFirstname(String firstname) {
+        StoreFirstName[count]=this.firstname;
         this.firstname = firstname;
     }
 
@@ -21,6 +34,7 @@ public class AddressBook {
     }
 
     public void setLastname(String lastname) {
+        StoreLastName[count]=this.lastname;
         this.lastname = lastname;
     }
 
@@ -29,6 +43,7 @@ public class AddressBook {
     }
 
     public void setAddress(String address) {
+        StoreAddress[count]=this.address;
         this.address = address;
     }
 
@@ -37,6 +52,7 @@ public class AddressBook {
     }
 
     public void setState(String state) {
+        StoreState[count]=this.state;
         this.state = state;
     }
 
@@ -45,6 +61,7 @@ public class AddressBook {
     }
 
     public void setCity(String city) {
+        StoreCity[count]=this.city;
         this.city = city;
     }
 
@@ -53,6 +70,7 @@ public class AddressBook {
     }
 
     public void setEmail(String email) {
+        StoreEmail[count]=this.email;
         this.email = email;
     }
 
@@ -61,6 +79,7 @@ public class AddressBook {
     }
 
     public void setZip(int zip) {
+        StoreZip[count]=this.zip;
         this.zip = zip;
     }
 
@@ -69,14 +88,15 @@ public class AddressBook {
     }
 
     public void setPhonenumber(long phonenumber) {
+        StorePhoneNumber[0]=this.phonenumber;
         this.phonenumber = phonenumber;
     }
-
-
     public static void Details(){
+        count++;
         AddressBook a = new AddressBook();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Your First name:-");
+
+        System.out.println("Enter Your FIrst name:-");
         a.firstname=sc.next();
         a.setFirstname(a.firstname);
 
@@ -108,28 +128,110 @@ public class AddressBook {
         a.email=sc.next();
         a.setEmail(a.email);
 
-        System.out.println("First Name: " +a.getFirstname());
-        System.out.println("Last Name : " +a.getLastname());
-        System.out.println("Phonenumber : " +a.getPhonenumber());
-        System.out.println("Address : " +a.getAddress());
-        System.out.println("City : " +a.getCity());
-        System.out.println("State Name : " +a.getState());
-        System.out.println("Zip Code : " +a.getZip());
-        System.out.println("Email Id : " +a.getEmail());
-
+        ask();
     }
-    public static void main(String[] args) {
+
+    public static void ask(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome to Address Book Program");
-        System.out.println("Enter Contact details of the person");
-        Details();
-        System.out.println("Do you want to add more contacts ?? \t 1)Yes (Y) \t2) No (N)");
-        String input=sc.next();
-        String yes = "Y";
-        if (input.equals(yes)) {
+        System.out.println("Do you want to do anything else ???");
+        //   char continueEdit = sc.next().charAt(0);
+        char a = sc.next().charAt(0);
+        if(a=='y')
+        {
+            start();
+        }
+        else {
+            System.exit(0);
+        }
+    }
+    public static void displaydata(){
+        ////// enter 1 for the 1st person as a sr
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ENter sr the number of the contact");
+        int sr = sc.nextInt();
+        System.out.println("first name is "+StoreFirstName[sr]);
+        System.out.println("laste name is"+ StoreLastName[sr]);
+        System.out.println("Phone number is "+StorePhoneNumber[sr]);
+        System.out.println("Address is"+StoreAddress[sr]);
+        System.out.println("State is"+StoreState[sr]);
+        System.out.println("city is "+StoreCity[sr]);
+        System.out.println("Zip code is "+StoreZip[sr]);
+        System.out.println("Email is "+StoreEmail[sr]);
+        ask();
+    }
+
+    public static void edit(){
+        // enter 1 to edit 1st person as a sr no enter 2 to edit 2nd person
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter sr no of the person");
+        int serial= sc.nextInt();
+        System.out.println("what you want to update");
+        System.out.println("1)name \n 2)lastname \n 3)phonenumber \n 4)address \n 5)state \n 6)city \n 7)zipcode \n 8)Email");
+        int update = sc.nextInt();
+        if(update==1)
+        {
+            System.out.println("Enter updated name");
+            String UpdatedName=sc.next();
+            StoreFirstName[serial]=UpdatedName;
+            System.out.println("data updated!!!!!");
+        }
+        else if(update==2)
+        {
+            System.out.println("Enter updated lastname");
+            String UpdatedLastName=sc.next();
+            StoreLastName[serial]=UpdatedLastName;
+            System.out.println("data updated!!!!!");
+        } else if (update==3) {
+            System.out.println("Enter updated phonenumber");
+            long UpdatedPhonenumber=sc.nextLong();
+            StorePhoneNumber[serial]=UpdatedPhonenumber;
+            System.out.println("data updated!!!!!");
+        } else if (update==4) {
+            System.out.println("Enter updated Address");
+            String UpdatedAddress=sc.next();
+            StoreAddress[serial]=UpdatedAddress;
+            System.out.println("data updated!!!!!");
+        } else if (update==5) {
+            System.out.println("Enter updated State");
+            String Updatedstate=sc.next();
+            StoreState[serial]=Updatedstate;
+            System.out.println("data updated!!!!!");
+        } else if (update==6) {
+            System.out.println("Enter updated city");
+            String Updatedcity=sc.next();
+            StoreCity[serial]=Updatedcity;
+            System.out.println("data updated!!!!!");
+        } else if (update==7) {
+            System.out.println("Enter updated ZipCode");
+            int UpdatedZipCode=sc.nextInt();
+            StoreZip[serial]=UpdatedZipCode;
+            System.out.println("data updated!!!!!");
+        } else if (update==8) {
+            System.out.println("Enter updated lastname");
+            String UpdatedEmail=sc.next();
+            StoreEmail[serial]=UpdatedEmail;
+            System.out.println("data updated!!!!!");
+        }
+        ask();
+    }
+    public static void start(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("which operation you want to perform \n 1) Create new contact \n 2) display details \n 3)Edit any contact \n 4)Exit ");
+        int takeip=sc.nextInt();
+        if(takeip==1)
+        {
             Details();
+        } else if (takeip==2) {
+            displaydata();
+        }
+        else if(takeip==3) {
+            edit();
         } else {
             System.exit(0);
         }
+    }
+    public static void main(String[] args) {
+        System.out.println("Welcome to Address Book Program");
+        start();
     }
 }
