@@ -76,7 +76,7 @@ public class AddressBook {
     public static void Details(){
         AddressBook a = new AddressBook();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter Your FIrst name:-");
+        System.out.println("Enter Your First name:-");
         a.firstname=sc.next();
         a.setFirstname(a.firstname);
 
@@ -119,15 +119,17 @@ public class AddressBook {
 
     }
     public static void main(String[] args) {
-        System.out.println("Welcome to employee wage computation");
-
-       // AddressBook ab = new AddressBook();
+        Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to Address Book Program");
         System.out.println("Enter Contact details of the person");
         Details();
-
-
-
+        System.out.println("Do you want to add more contacts ?? \t 1)Yes (Y) \t2) No (N)");
+        String input=sc.next();
+        String yes = "Y";
+        if (input.equals(yes)) {
+            Details();
+        } else {
+            System.exit(0);
+        }
     }
-
 }
